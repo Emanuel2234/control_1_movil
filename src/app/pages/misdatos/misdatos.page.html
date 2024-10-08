@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="amarilloduoc">
+    <ion-title #titulo size="large">
+      <div class="titulo-container">
+        <span class="titulo-text">Sistema de Asistencia DUOC</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar color="light">
+  <ion-buttons slot="start">
+    <ion-button (click)="navegar('/inicio')">Inicio</ion-button>
+    <ion-button (click)="navegar('/miclase')">Mi clase</ion-button>
+    <ion-button (click)="navegar('/misdatos')">Mis datos</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+  <div class="centrar">
+    <div class="enmarcar ion-text-center" #page>
+      <div class="duoc-icon"></div>
+      <ion-toolbar class="ion-padding-top">
+        <h1 *ngIf="usuario.cuenta.trim() !== ''">
+          ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+        </h1>
+        <h1 *ngIf="usuario.cuenta.trim() == ''">
+          Para usar el sistema debe llenar sus datos
+        </h1>
+        <h2>
+          Mis datos personales
+        </h2>
+      </ion-toolbar>
+
+      <ion-item #itemCuenta>
+        <ion-input [(ngModel)]="usuario.cuenta" label="Cuenta" labelPlacement="floating" placeholder="Ej: atorres"></ion-input>
+      </ion-item>
+
+      <ion-item #itemNombre>
+        <ion-input [(ngModel)]="usuario.nombre" label="Nombres" labelPlacement="floating" placeholder="Ej: Ana"></ion-input>
+      </ion-item>
+
+      <ion-item #itemApellido>
+        <ion-input [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating" placeholder="Ej: Torres"></ion-input>
+      </ion-item>
+
+      <ion-item #itemCorreo>
+        <ion-input [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" placeholder="Ej: Ana"></ion-input>
+      </ion-item>
+
+      <ion-item #itemPreguntaSecreta>
+        <ion-input [(ngModel)]="usuario.preguntaSecreta" label="Pregunta Secreta" labelPlacement="floating" placeholder="Ej: Ana"></ion-input>
+      </ion-item>
+
+      <ion-item #itemRespuestaSecreta>
+        <ion-input [(ngModel)]="usuario.respuestaSecreta" label="Respuesta Secreta" labelPlacement="floating" placeholder="Ej: Ana"></ion-input>
+      </ion-item>
+
+      <ion-item #itemEducacion class="font-size-12">
+        <ion-select [(ngModel)]="usuario.nivelEducacional!.id" (ionChange)="actualizarNivelEducacional($event)" label="Educación" position="floating">
+          <ion-select-option *ngFor="let nivelEducacional of listaNivelesEducacionales" [value]="nivelEducacional.id">
+            {{nivelEducacional.nombre}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    
+      <ion-item #itemFechaNacimiento>
+        <table>
+          <tr>
+            <td class="font-size-12">Nacimiento</td>
+            <td class="cell-align-right">
+              <input
+                matInput
+                [matDatepicker]="fechaNacimiento"
+                [(ngModel)]="usuario.fechaNacimiento"
+                placeholder="dd/mm/yyyy"
+                class="date-width">
+            </td>
+            <td class="cell-width-0">
+              <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
+              <mat-datepicker #fechaNacimiento></mat-datepicker>
+            </td>
+          </tr>
+        </table>
+      </ion-item>
+
+      <ion-item #itemContrasena>
+        <ion-input [(ngModel)]="usuario.password"
+            label="Contraseña" labelPlacement="floating" type="password"
+            placeholder="Ej: Torres"></ion-input>
+      </ion-item>
+      
+      <ion-item #itemContrasena class="ion-padding-bottom">
+        <ion-input [(ngModel)]="usuario.password"
+            label="Repetir Contraseña" labelPlacement="floating" type="password"
+            placeholder="Ej: Torres"></ion-input>
+      </ion-item>
+
+
+      <ion-button shape="round" size="small"
+          (click)="actualizarUsuario()">
+        Actualizar usuario
+      </ion-button>
+
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="amarilloduoc" class="ion-text-center">
+    
+
+    <ion-button shape="round" size="small" (click)="navegar('/ingreso')">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Cerrar Sesión
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

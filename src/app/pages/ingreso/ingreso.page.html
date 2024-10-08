@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="amarilloduoc">
+    <ion-title #titulo size="large">
+      <div class="titulo-container">
+        <span class="titulo-text">Sistema de Asistencia DUOC</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="centrar">
+    <div class="enmarcar-login">
+      <ion-card class="ion-text-center">
+        
+        <img alt="DUOC" src="../../../assets/img/pao.jpg" class="foto-portada" />
+      
+        <ion-card-content>
+
+          <ion-card-header>
+            <ion-toolbar>
+              <h1>Sistema de Asistencia DUOC</h1>
+              <h2>Inicio de sesión</h2>
+            </ion-toolbar>
+          </ion-card-header>
+
+          <ion-item>
+            <ion-input [(ngModel)]="usuario.cuenta" 
+                label="Cuenta" labelPlacement="floating"
+                placeholder="Ej: atorres"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="usuario.password" 
+                label="Contraseña" labelPlacement="floating" type="password"
+                placeholder="Ej: 1234"></ion-input>
+          </ion-item>
+
+          <div class="ion-margin-top">
+            <ion-button shape="round" size="small" (click)="ingresar()" class="ancho-boton">
+              Ingresar
+            </ion-button>
+            
+          </div>
+           <br>
+          <a (click)="ingresarPaginaValidarCorreo()">Recuperar Contraseña</a>
+        </ion-card-content>
+        
+      </ion-card>
+
+    </div>
+  </div>
+</ion-content>
+//close

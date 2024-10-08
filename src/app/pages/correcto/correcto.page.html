@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="amarilloduoc">
+    <ion-title size="large">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Imagen del logo centrada y con tamaño mediano -->
+  <div class="logo-container ion-text-center">
+    <img src="../../../assets/img/LogoDuoc.jpeg" alt="Logo Duoc UC" class="logo" />
+  </div>
+
+  <div class="centrar">
+    <div class="enmarcar ion-text-center">
+      <ion-toolbar class="ion-padding-top">
+        <h1 class="titulo-text">Sistema de Asistencia DUOC</h1>
+        <img alt="DUOC" src="../../../assets/img/correcto.jpeg" class="foto-portada" />
+        <h2>Tu contraseña es: <strong>{{ password }}</strong></h2>
+      </ion-toolbar>
+
+      <ion-button shape="round" size="small" (click)="navegar('/ingreso')">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        Iniciar Sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+
+

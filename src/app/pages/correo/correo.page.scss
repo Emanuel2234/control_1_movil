@@ -1,0 +1,100 @@
+ion-input, ion-select {
+  color: gray;
+  text-align: right;
+}
+
+ion-toolbar,ion-footer{
+  background-color: #FFB800;
+}
+
+ion-button{
+  --background: var(--ion-color-grisduoc);
+  --border-width: 0px;  
+  --box-shadow: none;
+  margin-top: 15px; 
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.font-size-12 {
+  font-size: 12px;
+  color: gray;
+}
+
+.date-width {
+  width: 105px;
+}
+
+.cell-align-right {
+  text-align: right;
+}
+
+.cell-width-0 {
+  width: 0px;
+}
+
+.duoc-icon img {
+  width: 80px; // Ajusta el ancho según lo necesites
+  height: auto; // Mantiene la proporción
+  display: inline-block; // Alineación correcta
+  margin-right: 10px; // Espacio entre el logo y los botones
+  vertical-align: middle; // Alineación vertical
+}
+
+.titulo-text {
+  flex-grow: 1; // Permite que el texto ocupe el espacio restante
+  text-align: center; // Centra el texto dentro de su espacio
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centrar la imagen horizontalmente */
+  align-items: center;
+  margin-top: 15px; /* Añadir margen superior para separar del contenido */
+  margin-bottom: -70px;
+}
+
+.logo {
+  width: 360px; /* Tamaño mediano de la imagen */
+  height: auto; /* Mantener la proporción */
+}
+
+ion-card {
+  margin-top: 20px;
+}
+
+.input-corre-responsive {
+  font-size: 16px; /* Ajusta el tamaño del texto */
+  padding: 10px;
+}
+
+.boton-responsive {
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.duoc-icon-2 {
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80px; /* Ajusta el tamaño para que se vea bien en móvil */
+  width: 80px;
+  margin: 0 auto;
+}
+
+.input-corre-responsive {
+  font-size: 16px;
+  padding: 10px;
+  text-align: left; /* Asegura que el texto ingresado esté alineado a la izquierda */
+}
+
+/* Estilo del placeholder */
+.input-corre-responsive::placeholder {
+  color: #999; /* Cambia el color del placeholder si lo deseas */
+  text-align: left; /* Alinea el placeholder a la izquierda */
+  font-size: 16px; /* Ajusta el tamaño de la fuente del placeholder */
+}

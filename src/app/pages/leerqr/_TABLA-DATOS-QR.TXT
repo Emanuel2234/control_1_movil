@@ -1,0 +1,47 @@
+      <div *ngIf="datosQR">
+        <h1> Has quedado presente en tu clase </h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Bloque Inicio</td>
+              <td>{{ asistencia!.bloqueInicio }}</td>
+            </tr>
+            <tr>
+              <td>Bloque Término</td>
+              <td>{{ asistencia!.bloqueTermino }}</td>
+            </tr>
+            <tr>
+              <td>Día</td>
+              <td>{{ asistencia!.dia }}</td>
+            </tr>
+            <tr>
+              <td>Hora Inicio</td>
+              <td>{{ asistencia!.horaInicio }}</td>
+            </tr>
+            <tr>
+              <td>Hora Fin</td>
+              <td>{{ asistencia!.horaFin }}</td>
+            </tr>
+            <tr>
+              <td>ID Asignatura</td>
+              <td>{{ asistencia!.idAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Asignatura</td>
+              <td>{{ asistencia!.nombreAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Profesor</td>
+              <td>{{ asistencia!.nombreProfesor }}</td>
+            </tr>
+            <tr>
+              <td>Sección</td>
+              <td>{{ asistencia!.seccion }}</td>
+            </tr>
+            <tr>
+              <td>Sede</td>
+              <td>{{ asistencia!.sede }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>

@@ -1,0 +1,51 @@
+.enmarcar-login {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+}
+
+.ancho-boton {
+  width: 140px;
+}
+
+ion-card{
+  --background: var(--ion-color-blancoduoc);
+  --border-width: 0px;  
+  --box-shadow: none; 
+}
+
+ion-content{
+  --background: #eeeeee
+}
+
+ion-toolbar,ion-footer{
+  background-color: #FFB800;
+}
+
+ion-button{
+  --background: var(--ion-color-grisduoc);
+  --border-width: 0px;  
+  --box-shadow: none; 
+}
+
+.titulo-container {
+  display: flex; // Usa flexbox para la alineación
+  align-items: center; // Centra verticalmente el ícono y el texto
+  justify-content: flex-start; // Alinea el contenido a la izquierda
+  flex: 1; // Permite que el contenedor tome todo el espacio disponible
+  margin: 0 10px; // Espacio a los lados del contenedor
+}
+
+.duoc-icon img {
+  width: 80px; // Ajusta el ancho según lo necesites
+  height: auto; // Mantiene la proporción
+  display: inline-block; // Alineación correcta
+  margin-right: 10px; // Espacio entre el logo y los botones
+  vertical-align: middle; // Alineación vertical
+}
+
+.titulo-text {
+  flex-grow: 1; // Permite que el texto ocupe el espacio restante
+  text-align: center; // Centra el texto dentro de su espacio
+}
+//close

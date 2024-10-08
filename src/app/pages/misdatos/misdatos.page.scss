@@ -1,0 +1,64 @@
+ion-input, ion-select {
+  color: gray;
+  text-align: right;
+}
+
+ion-toolbar,ion-footer{
+  background-color: #FFB800;
+}
+
+ion-button{
+  --background: var(--ion-color-grisduoc);
+  --border-width: 0px;  
+  --box-shadow: none; 
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.font-size-12 {
+  font-size: 12px;
+  color: gray;
+}
+
+.date-width {
+  width: 100px;
+}
+
+.cell-align-right {
+  text-align: right;
+}
+
+.cell-width-0 {
+  width: 0px;
+}
+
+.titulo-container {
+  display: flex; // Usa flexbox para la alineación
+  align-items: center; // Centra verticalmente el ícono y el texto
+  justify-content: flex-start; // Alinea el contenido a la izquierda
+  flex: 1; // Permite que el contenedor tome todo el espacio disponible
+  margin: 0 10px; // Espacio a los lados del contenedor
+}
+
+.duoc-icon img {
+  width: 80px; // Ajusta el ancho según lo necesites
+  height: auto; // Mantiene la proporción
+  display: inline-block; // Alineación correcta
+  margin-right: 10px; // Espacio entre el logo y los botones
+  vertical-align: middle; // Alineación vertical
+}
+
+.titulo-text {
+  flex-grow: 1; // Permite que el texto ocupe el espacio restante
+  text-align: center; // Centra el texto dentro de su espacio
+}
+
+.ion-padding-bottom {
+  margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+
+//close
