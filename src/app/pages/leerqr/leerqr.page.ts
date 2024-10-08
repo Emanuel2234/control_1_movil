@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario';
 import jsQR, { QRCode } from 'jsqr';
 import { Asistencia } from 'src/app/interfaces/asistencia';
+import { AnimationController} from '@ionic/angular';
 
 @Component({
   selector: 'app-leerqr',
@@ -10,7 +11,9 @@ import { Asistencia } from 'src/app/interfaces/asistencia';
   styleUrls: ['./leerqr.page.scss'],
 })
 export class LeerqrPage implements OnInit {
-
+  
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+  @ViewChild('page', { read: ElementRef }) page!: ElementRef;
   @ViewChild('video') private video!: ElementRef;
   @ViewChild('canvas') private canvas!: ElementRef;
 
@@ -18,14 +21,50 @@ export class LeerqrPage implements OnInit {
   public asistencia: Asistencia | undefined = undefined;
   public escaneando = false;
   public datosQR: string = '';
+  
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { 
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,private animationController: AnimationController) { 
+    
     this.usuario = new Usuario();
     this.usuario.recibirUsuario(activatedRoute, router);
+    
+    const usuarioPersistente = localStorage.getItem('usuario');
+    if (usuarioPersistente) {
+      this.usuario = Object.assign(new Usuario(), JSON.parse(usuarioPersistente));
+    }    
+  }
+
+  ngAfterViewInit() {
+    this.animarTituloIzqDer();
+    
+  }
+
+  animarVueltaDePagina() {
+    this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .iterations(1)
+      .duration(1000)
+      .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
+      .duration(1000)
+      .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
+      .play();
+  }
+
+  animarTituloIzqDer() {
+    this.animationController
+      .create()
+      .addElement(this.itemTitulo.nativeElement)
+      .iterations(Infinity)
+      .duration(6000)
+      .fromTo('transform', 'translate(0%)', 'translate(100%)')
+      .fromTo('opacity', 0.2, 1)
+      .play();
   }
 
   ngOnInit() {
     this.comenzarEscaneoQR();
+    
   }
 
   public async comenzarEscaneoQR() {
@@ -75,7 +114,31 @@ export class LeerqrPage implements OnInit {
     this.router.navigate(['miclase'], { queryParams: { data: JSON.stringify(this.asistencia) } });
   }
 
+
+
   public detenerEscaneoQR(): void {
     this.escaneando = false;
   }
+
+  navegar(pagina: string) {
+    this.usuario.navegarEnviandousuario(this.router, pagina);
+  }
+
+  cerrarSesion() {
+    // Aquí puedes agregar la lógica para cerrar sesión
+    this.router.navigate(['/ingreso']); // Redirigir al login
+  }
+
+  actualizarUsuario() {
+    // Primero, actualizamos los datos del usuario en la clase.
+    this.usuario.actualizarUsuario();
+  
+    // Luego, almacenamos el usuario actualizado en localStorage.
+    localStorage.setItem('usuario', JSON.stringify(this.usuario));
+  
+    // Opcional: Si quieres redirigir al usuario a otra página después de actualizar
+    // this.router.navigate(['/ruta']);  // Descomenta y ajusta si es necesario
+  }
+
+  
 }

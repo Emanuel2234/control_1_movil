@@ -34,6 +34,10 @@ export class MisDatosPage implements AfterViewInit {
   {
     this.usuario = new Usuario();
     this.usuario.recibirUsuario(this.activatedRoute, this.router);
+    const usuarioPersistente = localStorage.getItem('usuario');
+    if (usuarioPersistente) {
+      this.usuario = Object.assign(new Usuario(), JSON.parse(usuarioPersistente));
+    }
   }
 
   ngAfterViewInit() {
@@ -146,6 +150,7 @@ export class MisDatosPage implements AfterViewInit {
         <b>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
         <b>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
         <b>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
+        <b>Contraseña: </b> ${this.asignado(this.usuario.password)}
       </small>
     `;
     this.mostrarMensajeAlerta(mensaje);
@@ -162,10 +167,18 @@ export class MisDatosPage implements AfterViewInit {
 
   navegar(pagina: string) {
     this.usuario.navegarEnviandousuario(this.router, pagina);
+    localStorage.setItem('usuario', JSON.stringify(this.usuario));
   }
 
   actualizarUsuario() {
+    // Primero, actualizamos los datos del usuario en la clase.
     this.usuario.actualizarUsuario();
+  
+    // Luego, almacenamos el usuario actualizado en localStorage.
+    localStorage.setItem('usuario', JSON.stringify(this.usuario));
+  
+    // Opcional: Si quieres redirigir al usuario a otra página después de actualizar
+    // this.router.navigate(['/ruta']);  // Descomenta y ajusta si es necesario
   }
 
 }

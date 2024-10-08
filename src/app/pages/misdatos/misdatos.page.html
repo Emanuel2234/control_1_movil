@@ -8,28 +8,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-toolbar color="light">
-  <ion-buttons slot="start">
-    <ion-button (click)="navegar('/inicio')">Inicio</ion-button>
-    <ion-button (click)="navegar('/miclase')">Mi clase</ion-button>
-    <ion-button (click)="navegar('/misdatos')">Mis datos</ion-button>
-  </ion-buttons>
-</ion-toolbar>
-
 <ion-content [fullscreen]="true">
+  <div class="logo-container ion-text-center">
+    <img src="../../../assets/img/LogoDuoc.jpeg" alt="Logo Duoc UC" class="logo" />
+  </div>
+  <div class="botones-container ion-text-center">
+    <ion-button shape="round" size="small" (click)="navegar('/leerqr')">Inicio</ion-button>
+    <ion-button shape="round" size="small" (click)="navegar('/miclase')">Mi clase</ion-button>
+    <ion-button shape="round" size="small" (click)="navegar('/misdatos')">Mis datos</ion-button>
+  </div>
   <div class="centrar">
     <div class="enmarcar ion-text-center" #page>
       <div class="duoc-icon"></div>
+      
       <ion-toolbar class="ion-padding-top">
-        <h1 *ngIf="usuario.cuenta.trim() !== ''">
-          ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+        
+        <h1>
+          Mis Datos Personales
         </h1>
-        <h1 *ngIf="usuario.cuenta.trim() == ''">
-          Para usar el sistema debe llenar sus datos
-        </h1>
-        <h2>
-          Mis datos personales
-        </h2>
       </ion-toolbar>
 
       <ion-item #itemCuenta>
@@ -92,7 +88,7 @@
       </ion-item>
       
       <ion-item #itemContrasena class="ion-padding-bottom">
-        <ion-input [(ngModel)]="usuario.password"
+        <ion-input [(ngModel)]="usuario.repetirPassword"
             label="Repetir Contraseña" labelPlacement="floating" type="password"
             placeholder="Ej: Torres"></ion-input>
       </ion-item>
@@ -100,7 +96,7 @@
 
       <ion-button shape="round" size="small"
           (click)="actualizarUsuario()">
-        Actualizar usuario
+        Actualizar 
       </ion-button>
 
     </div>
@@ -115,5 +111,6 @@
       <ion-icon slot="start" name="log-out"></ion-icon>
       Cerrar Sesión
     </ion-button>
+
   </ion-toolbar>
 </ion-footer>

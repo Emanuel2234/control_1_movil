@@ -48,4 +48,22 @@ ion-button{
   flex-grow: 1; // Permite que el texto ocupe el espacio restante
   text-align: center; // Centra el texto dentro de su espacio
 }
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centrar la imagen horizontalmente */
+  align-items: center;
+  margin-top: 15px; /* Añadir margen superior para separar del contenido */
+  margin-bottom: -70px;
+}
+
+.titulo-text {
+  flex-grow: 1; // Permite que el texto ocupe el espacio restante
+  text-align: center; // Centra el texto dentro de su espacio
+}
+
+.logo {
+  width: 360px; /* Tamaño mediano de la imagen */
+  height: auto; /* Mantener la proporción */
+}
 //close

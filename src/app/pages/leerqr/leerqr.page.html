@@ -9,9 +9,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center">
+  <div class="logo-container ion-text-center">
+    <img src="../../../assets/img/LogoDuoc.jpeg" alt="Logo Duoc UC" class="logo" />
+  </div>
+
+  <!-- Contenedor de botones -->
+  <div class="botones-container ion-text-center" >
+    <ion-button shape="round" size="small" (click)="navegar('/inicio')">Inicio</ion-button>
+    <ion-button shape="round" size="small" (click)="navegar('/miclase')">Mi clase</ion-button>
+    <ion-button shape="round" size="small" (click)="navegar('/misdatos')">Mis datos</ion-button>
+  </div>
+
   <div class="centrar">
     <div class="enmarcar">
-      <h1 *ngIf="!escaneando && !datosQR">Registra tu asistencia a clases</h1>
+      <h1 *ngIf="usuario.cuenta.trim() !== ''">
+        ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+      </h1>
+      <h1 *ngIf="usuario.cuenta.trim() == ''">
+        Para usar el sistema debe llenar sus datos
+      </h1>
+
+      <h1>Registra el código QR para registrar tu asistencia a clases</h1>
 
       <video #video [hidden]="!escaneando" style="width: 100%"> </video>
       <canvas #canvas hidden></canvas>
@@ -73,14 +91,15 @@
         <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
         Detener escaneo de QR
       </ion-button>
-
     </div>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="amarilloduoc" class="ion-text-center">
-    
-    
+  <ion-toolbar color="amarilloduoc" class="ion-text-center">  
+    <ion-button shape="round" size="small" (click)="navegar('/ingreso')">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Cerrar Sesión
+    </ion-button>
   </ion-toolbar>
 </ion-footer>

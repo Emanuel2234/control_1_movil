@@ -33,19 +33,37 @@ export class PreguntaPage implements OnInit {
 
   // Método para validar la respuesta secreta
   public async validarRespuestaSecreta(): Promise<void> {
-    if (this.usuario?.respuestaSecreta === this.respuesta) {
+    if (!this.usuario) {
+      await this.mostrarAlerta('No se ha recibido información del usuario.');
+      this.router.navigate(['/ingreso']);
+      return;
+    }
+
+    if (this.usuario.respuestaSecreta === this.respuesta) {
       // Redirigir a la página "correcto" pasando los datos del usuario, incluyendo el password
       const navigationExtras = {
         state: {
           usuario: this.usuario, // Pasar el usuario completo, incluyendo el password
-          password: this.usuario?.password // Pasar solo el password
+          password: this.usuario.password // Pasar solo el password
         }
       };
       this.router.navigate(['/correcto'], navigationExtras);
     } else {
-      // Redirigir a incorrecto.html
-      this.router.navigate(['/incorrecto']); // 
+      // Mostrar una alerta si la respuesta es incorrecta
+      await this.mostrarAlerta('La respuesta secreta es incorrecta.');
+      this.router.navigate(['/incorrecto']);
     }
+  }
+
+  // Método para mostrar alertas
+  private async mostrarAlerta(mensaje: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: mensaje,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {
@@ -60,6 +78,3 @@ export class PreguntaPage implements OnInit {
     this.router.navigate([pagina]);
   }
 }
-
-
-//close

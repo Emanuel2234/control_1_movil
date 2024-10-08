@@ -8,6 +8,19 @@ ion-toolbar,ion-footer{
   background-color: #FFB800;
 }
 
+.logo {
+  width: 360px; /* Tamaño mediano de la imagen */
+  height: auto; /* Mantener la proporción */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centrar la imagen horizontalmente */
+  align-items: center;
+  margin-top: 15px; /* Añadir margen superior para separar del contenido */
+  margin-bottom: -70px;
+}
+
 ion-button{
   --background: var(--ion-color-grisduoc);
   --border-width: 0px;  

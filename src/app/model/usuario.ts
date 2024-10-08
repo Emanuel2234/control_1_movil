@@ -8,6 +8,7 @@ export class Usuario extends Persona {
   public cuenta: string;
   public correo: string;
   public password: string;
+  public repetirPassword: string;
   public preguntaSecreta: string;
   public respuestaSecreta: string;
   public asistencia: Asistencia;
@@ -18,6 +19,7 @@ export class Usuario extends Persona {
     this.cuenta = '';
     this.correo = '';
     this.password = '';
+    this.repetirPassword = '';
     this.preguntaSecreta = '';
     this.respuestaSecreta = '';
     this.nombre = '';
@@ -165,22 +167,34 @@ export class Usuario extends Persona {
   }
 
   recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
-    activatedRoute.queryParams.subscribe(()=>{
-      const nav=router.getCurrentNavigation();
-      if(nav){
-        if(nav.extras.state){
-          const cuenta = nav.extras.state['cuenta'];
-          const password = nav.extras.state['password'];
-          const usu = Usuario.buscarUsuarioValido(cuenta,password);
-          this.cuenta = usu!.cuenta;
-          this.correo = usu!.correo;
-          this.password = usu!.password;
-          this.preguntaSecreta = usu!.preguntaSecreta;
-          this.respuestaSecreta = usu!.respuestaSecreta;
-          this.nombre = usu!.nombre;
-          this.apellido = usu!.apellido;
-          this.nivelEducacional = usu!.nivelEducacional;
-          this.fechaNacimiento = usu!.fechaNacimiento;
+    activatedRoute.queryParams.subscribe(() => {
+      const nav = router.getCurrentNavigation();
+      if (nav && nav.extras.state) {
+        const cuenta = nav.extras.state['cuenta'];
+        const password = nav.extras.state['password'];
+        const usu = Usuario.buscarUsuarioValido(cuenta, password);
+  
+        if (usu) {
+          this.cuenta = usu.cuenta;
+          this.correo = usu.correo;
+          this.password = usu.password;
+          this.preguntaSecreta = usu.preguntaSecreta;
+          this.respuestaSecreta = usu.respuestaSecreta;
+          this.nombre = usu.nombre;
+          this.apellido = usu.apellido;
+          this.nivelEducacional = usu.nivelEducacional;
+          this.fechaNacimiento = usu.fechaNacimiento;
+  
+          // Cargar datos persistentes
+          const usuarioPersistente = localStorage.getItem('usuario');
+          if (usuarioPersistente) {
+            const datosUsuario = JSON.parse(usuarioPersistente);
+            this.cuenta = datosUsuario.cuenta;
+            this.correo = datosUsuario.correo;
+            this.password = datosUsuario.password;
+            // Cargar los demás datos...
+          }
+  
           return;
         }
       }
@@ -202,22 +216,32 @@ export class Usuario extends Persona {
     }
   }
   actualizarUsuario() {
-    const usu = this.buscarUsuarioPorCuenta(this.cuenta);
-    if (usu){
-      usu.correo= this.correo;
-      usu.password= this.password;
-      usu.preguntaSecreta= this.preguntaSecreta;
-      usu.respuestaSecreta= this.respuestaSecreta;
-      usu.nombre= this.nombre;
-      usu.apellido= this.apellido;
-      usu.nivelEducacional= this.nivelEducacional;
-      usu.fechaNacimiento= this.fechaNacimiento;
-      usu.asistencia= this.asistencia;
-
+    // Validar que las contraseñas coincidan
+    if (this.password !== this.repetirPassword) {
+      console.log('Error: Las contraseñas no coinciden.');
+      return;
     }
 
-    
+
+    const usu = this.buscarUsuarioPorCuenta(this.cuenta);
+    if (usu) {
+      usu.correo = this.correo;
+      usu.password = this.password;
+      usu.preguntaSecreta = this.preguntaSecreta;
+      usu.respuestaSecreta = this.respuestaSecreta;
+      usu.nombre = this.nombre;
+      usu.apellido = this.apellido;
+      usu.nivelEducacional = this.nivelEducacional;
+      usu.fechaNacimiento = this.fechaNacimiento;
+      usu.asistencia = this.asistencia;
+  
+      // Guardar el usuario actualizado en localStorage
+      localStorage.setItem('usuario', JSON.stringify(usu));
+      console.log('Información de usuario actualizada correctamente.');
+    }
   }
   
 }
+
+
 
